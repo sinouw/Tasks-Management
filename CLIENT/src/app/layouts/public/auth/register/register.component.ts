@@ -28,7 +28,7 @@ export class RegisterComponent {
       email: ['',[Validators.required, Validators.pattern(this.emailPattern)]],
       firstname: ['', Validators.required],
       lastname: ['', Validators.required],
-      roles: ['user'],
+      roles: ['NOROLE'],
       passwords: this.formBuilder.group({
         password: ['', [Validators.required, Validators.minLength(4)]],
         confirmPassword: ['', Validators.required]

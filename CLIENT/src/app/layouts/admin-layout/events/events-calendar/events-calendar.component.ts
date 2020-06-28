@@ -70,7 +70,12 @@ export class EventsCalendarComponent {
         console.log("events : ", response)
         if (response.length > 0) {
           response.map(e => {
-            if (e.roles.includes(currentRoles)) {
+
+            
+            
+            if (currentRoles.some(x=>e.roles.includes(x))) {
+
+
               this.addEvents(e.title, new Date(e.startDate), new Date(e.endDate))
             }
           })
