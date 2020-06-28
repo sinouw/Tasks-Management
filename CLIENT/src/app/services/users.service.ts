@@ -30,7 +30,6 @@ export class UsersService {
       postalCode: body.postalCode,
       description: body.description,
       roles: body.roles,
-      departmentId: body.departmentId,
       status: body.status,
       createdAt: body.createdAt,
     })
@@ -51,7 +50,6 @@ export class UsersService {
       postalCode:'' ,
       description: '',
       roles: [''],
-      departmentId: ['', [Validators.required]],
       status: [true, [Validators.required]],
       createdAt: [new Date()],
       passwords: this.formBuilder.group({

@@ -18,6 +18,13 @@ export class LoginComponent {
     private accountService: AccountService,
     private notificationsService: NotificationsService,
     private router: Router) {
+        let token = this.accountService.getDecodedToken();
+        if (token) {
+          let currentRoles = token.roles;
+          let isAdmin = currentRoles.some(role => currentRoles.includes("admin"));
+          if (isAdmin) this.router.navigateByUrl('/dashboard');
+          else this.router.navigateByUrl('/events/calendar');
+        }
     this.createFormModel()
   }
 
@@ -35,11 +42,8 @@ export class LoginComponent {
         let token = this.accountService.getDecodedToken();
         let currentRoles = token.roles;
         let isAdmin = currentRoles.some(role => currentRoles.includes("admin"));
-        if (isAdmin) {
-          this.router.navigateByUrl('/dashboard');
-        }else{
-          this.router.navigateByUrl('/sections');
-        }
+        if (isAdmin) this.router.navigateByUrl('/dashboard');
+        else this.router.navigateByUrl('/events/calendar');
       },
       err => {
         console.log("err : ",err)

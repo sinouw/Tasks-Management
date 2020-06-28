@@ -12,12 +12,11 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { HttpClientModule } from '@angular/common/http';
-import { SectionsComponent } from './sections/sections.component';
 import { ComponentsModule } from 'app/core/components.module';
 
 
 @NgModule({
-  declarations: [LoginComponent,RegisterComponent, SectionsComponent],
+  declarations: [LoginComponent,RegisterComponent],
   imports: [
     CommonModule,
     HttpClientModule,

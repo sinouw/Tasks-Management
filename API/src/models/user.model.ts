@@ -6,7 +6,6 @@ export const UserSchema = new mongoose.Schema({
     username: { type: String, unique : true , required : true},
     firstname: { type: String, default: "" },
     lastname: { type: String, default: "" },
-    departmentId: mongoose.Types.ObjectId,
     password: String,
     phone: { type: String, default: "" },
     email: { type: String, unique : true , required : true },
@@ -25,7 +24,6 @@ export interface  User extends mongoose.Document {
     readonly username: string;
     readonly firstname: string;
     readonly lastname: string;
-    readonly departmentId: string;
     readonly password: string;
     readonly phone: string,
     readonly email: string,
@@ -44,7 +42,6 @@ export class  CreateUserDto {
     readonly firstname: string;
     readonly lastname: string;
     readonly email: string;
-    readonly departmentId: string;
     readonly password: string;
     readonly roles   : string[]; 
 }

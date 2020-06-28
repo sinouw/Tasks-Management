@@ -9,14 +9,6 @@
                     <div class="container">
                         <div class="col-md-12 col-sm-12 col-xs-12">
                             <mat-form-field class="example-full-width">
-                                <mat-select matInput placeholder="Department" formControlName="departmentId" required>
-                                    <mat-option [value]="department._id" *ngFor="let department of departmentsTitles">{{department.title}}</mat-option>
-                                    <mat-error *ngIf="formModel.get('departmentId').hasError('required') && formModel.get('departmentId').touched">This field should not be empty.</mat-error>
-                                </mat-select>
-                            </mat-form-field>
-                        </div>
-                        <div class="col-md-12 col-sm-12 col-xs-12">
-                            <mat-form-field class="example-full-width">
                                 <input matInput placeholder="Username" formControlName="username" required>
                                 <mat-error *ngIf="formModel.get('username').hasError('required') && formModel.get('username').touched">This field should not be empty.</mat-error>
                             </mat-form-field>

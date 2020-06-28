@@ -3,7 +3,6 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AccountService } from 'app/services/account.service';
 import { NotificationsService } from 'app/services/notifications.service';
 import { Router } from '@angular/router';
-import { DepartmentsService } from 'app/services/departments.service';
 
 @Component({
   selector: 'app-register',
@@ -13,29 +12,18 @@ import { DepartmentsService } from 'app/services/departments.service';
 export class RegisterComponent {
 
   formModel: FormGroup
-  departmentsTitles : any = []
   emailPattern: any = /\S+@\S+\.\S+/;
 
   constructor(private formBuilder: FormBuilder,
     private accountService: AccountService,
-    private departmentSerivce: DepartmentsService,
     private notificationsService: NotificationsService,
     private router: Router) {
-    this.getDepartmentsTitles()
     this.createFormModel()
   }
 
-  getDepartmentsTitles() {
-    this.departmentSerivce.getAll()
-    .subscribe((response : any)=>{
-     console.log("departments : ",response)
-     this.departmentsTitles = response
-    })
-  }
 
   createFormModel() {
     this.formModel = this.formBuilder.group({
-      departmentId: ['', Validators.required],
       username: ['', Validators.required],
       email: ['',[Validators.required, Validators.pattern(this.emailPattern)]],
       firstname: ['', Validators.required],

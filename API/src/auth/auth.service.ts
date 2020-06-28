@@ -1,13 +1,10 @@
 
 import { Injectable, OnModuleInit } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { User, CreateUserDto, defaultUserDoc } from 'src/models/user.model';
+import { User, defaultUserDoc } from 'src/models/user.model';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model, Types } from 'mongoose';
 import * as bcrypt from 'bcrypt';
-import { DepartmentService } from 'src/shared/department/department.service';
-import { threadId } from 'worker_threads';
-import { defaultDoc } from 'src/models/department.model';
 
 
 @Injectable()
@@ -19,20 +16,13 @@ export class AuthService implements OnModuleInit {
   constructor(
     private readonly jwtService: JwtService,
     @InjectModel('User') private readonly userModel: Model<User>,
-    private departmentService: DepartmentService
   ) { }
 
   async createDefaultAdmin() {
-    let department = await this.departmentService.getByTitle(defaultDoc.title);
-    if (!department) {
-      department = await this.departmentService.addNewDocument(defaultDoc)
-    }
 
     const user = await this.userModel.findOne({ username: "admin" });
     if (!user) {
-      let body :any = defaultUserDoc
-      body.departmentId = department._id
-      const newUser = await this.userModel(body);
+      const newUser = await this.userModel(defaultUserDoc);
       console.log("newUser : ", newUser)
       return newUser.save();
     }
@@ -46,24 +36,6 @@ export class AuthService implements OnModuleInit {
       {
         '$match': {
           '_id': Types.ObjectId(userId)
-        }
-      },
-      {
-        '$addFields': {
-          'objDepartmentId': '$departmentId'
-        }
-      },
-      {
-        '$lookup': {
-          'from': 'departments',
-          'localField': 'objDepartmentId',
-          'foreignField': '_id',
-          'as': 'department'
-        }
-      },
-      {
-        '$unwind': {
-          'path': '$department'
         }
       },
       {

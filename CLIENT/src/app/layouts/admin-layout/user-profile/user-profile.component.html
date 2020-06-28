@@ -54,14 +54,14 @@
                             <div class="row">
                                 <div class="col-md-4">
                                     <mat-form-field class="example-full-width">
-                                        <input matInput placeholder="City" formControlName="city" type="text">
-                                        <mat-error *ngIf="formModel.get('city').hasError('required') && formModel.get('city').touched">This field should not be empty.</mat-error>
+                                        <input matInput placeholder="Country" formControlName="country" type="text">
+                                        <mat-error *ngIf="formModel.get('country').hasError('required') && formModel.get('country').touched">This field should not be empty.</mat-error>
                                     </mat-form-field>
                                 </div>
                                 <div class="col-md-4">
                                     <mat-form-field class="example-full-width">
-                                        <input matInput placeholder="Country" formControlName="country" type="text">
-                                        <mat-error *ngIf="formModel.get('country').hasError('required') && formModel.get('country').touched">This field should not be empty.</mat-error>
+                                        <input matInput placeholder="City" formControlName="city" type="text">
+                                        <mat-error *ngIf="formModel.get('city').hasError('required') && formModel.get('city').touched">This field should not be empty.</mat-error>
                                     </mat-form-field>
                                 </div>
                                 <div class="col-md-4">
@@ -99,7 +99,7 @@
                         <a href="javascript:void(0)">
                             <img class="img" *ngIf="formModel.value.avatarUrl && formModel.value.avatarUrl!='http://localhost:3000/avatars/' ;else avatarBloc" [src]="formModel.value.avatarUrl" />
                             <ng-template #avatarBloc>
-                                <img src="img" src="../../../../assets/img/avatar.png">
+                                <img src="img" src="../../../../assets/img/logo-user1.png">
                             </ng-template>
                         </a>
                     </div>

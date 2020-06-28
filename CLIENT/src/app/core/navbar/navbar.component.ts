@@ -27,15 +27,10 @@ export class NavbarComponent implements OnInit {
 
     ngOnInit() {
         var addionalRoutes = [
-            { class: "", "icon": "layers", "path": "/sections", "title": "Sections" },
-            { class: "", "icon": "layers", "path": "/departments/edit", "title": "Edit Department" },
-            { class: "", "icon": "layers", "path": "/departments/add", "title": "Add Department" },
             { class: "", "icon": "layers", "path": "/events/edit", "title": "Edit Event" },
             { class: "", "icon": "layers", "path": "/events/add", "title": "Add Event" },
             { class: "", "icon": "layers", "path": "/agents/edit", "title": "Edit Agent" },
             { class: "", "icon": "layers", "path": "/agents/add", "title": "Add Agent" },
-            { class: "", "icon": "layers", "path": "/centers/edit", "title": "Edit Center" },
-            { class: "", "icon": "layers", "path": "/centers/add", "title": "Add Center" }
         ]
         this.listTitles = ROUTES.filter(listTitle => listTitle);
         this.listTitles = this.listTitles.concat(addionalRoutes)

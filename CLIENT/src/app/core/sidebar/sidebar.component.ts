@@ -13,11 +13,8 @@ export const ROUTES: any[] = [
     { role :'admin', path: '/dashboard', title: 'Dashboard',  icon: 'dashboard', class: '' },
     { path: '/events/calendar', title: "Calendar",  icon:'event', class: '' },
     { role :'admin', path: '/events/list', title: "Events List",  icon:'event_note', class: '' },
-    { role :'admin', path: '/departments/list', title: "Departments List",  icon:'layers', class: '' },
     { role :'admin', path: '/agents/list', title: "Agents List",  icon:'people', class: '' },
     { path: '/profile', title: "User Profile",  icon:'person', class: '' },
-    // { path: '/centers/list', title: "Training Centers List",  icon:'location_city', class: '' },
-    // { path: '/notifications', title: "Notifications",  icon:'notifications', class: '' },
 ];
 
 @Component({

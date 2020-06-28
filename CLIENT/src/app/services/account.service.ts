@@ -43,12 +43,15 @@ export class AccountService {
 
   getDecodedToken() {
     let token = localStorage.getItem('token');
-    return jwt_decode(token);
+    if (token) {
+      return jwt_decode(token);
+    }else{
+      return null
+    }
   }
 
   logout(){
     localStorage.removeItem('token')
-    localStorage.removeItem('section')
     this.router.navigateByUrl('/login')
   }
 

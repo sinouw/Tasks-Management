@@ -11,7 +11,6 @@ import { UserController } from '../shared/users/user.controller';
 import { authController } from './auth.controller';
 import { MongooseModule } from '@nestjs/mongoose';
 import { UserSchema } from 'src/models/user.model';
-import { DepartmentModule } from 'src/shared/department/department.module';
 
 @Module({
   imports: [
@@ -23,7 +22,6 @@ import { DepartmentModule } from 'src/shared/department/department.module';
       signOptions: { expiresIn: '7d' },
     }),
     UsersModule,
-    DepartmentModule
   ],  
   controllers: [UserController,authController],
   providers: [AuthService,LocalStrategy,JwtStrategy],

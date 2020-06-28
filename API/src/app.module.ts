@@ -6,12 +6,7 @@ import { UsersModule } from './shared/users/users.module';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigModule } from './core/config/config.module';
 import { ConfigService } from './core/config/config.service';
-import { DepartmentModule } from './shared/department/department.module';
 import { EventModule } from './shared/event/event.module';
-import { TrainingCenterModule } from './shared/training-center/training-center.module';
-import { NotificationModule } from './shared/notification/notification.module';
-import { ReviewModule } from './shared/review/review.module';
-import { EventCenterModule } from './shared/event-center/event-center.module';
 
 
 @Module({
@@ -32,12 +27,7 @@ import { EventCenterModule } from './shared/event-center/event-center.module';
     AuthModule,
     UsersModule,
     ConfigModule,
-    DepartmentModule,
-    EventModule,
-    TrainingCenterModule,
-    NotificationModule,
-    ReviewModule,
-    EventCenterModule,
+    EventModule
   ],
   controllers: [AppController],
   providers: [
