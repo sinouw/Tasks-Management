@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { UsersService } from 'app/services/users.service';
-import { DepartmentsService } from 'app/services/departments.service';
 import { NotificationsService } from 'app/services/notifications.service';
 import { ValidationErrors } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -12,12 +11,10 @@ import { Router } from '@angular/router';
 })
 export class AgentsEditComponent {
 
-  departmentsTitles: any = []
-  roles: any = ["admin","RSC","RA","RS"]
+  roles: any = ["admin","RH","IT"]
 
   constructor(private usersService: UsersService,
     private router: Router,
-    private departmentsService: DepartmentsService,
     private notificationsService: NotificationsService) {
     if (!this.usersService.formModel.value._id) {
       this.router.navigateByUrl('agents/list')
@@ -25,16 +22,7 @@ export class AgentsEditComponent {
       delete this.usersService.formModel.value.passwords
       console.log("formModel : ", this.usersService.formModel.value)
       
-      this.getDepartmentsTitles()
     }
-  }
-
-  getDepartmentsTitles() {
-    this.departmentsService.getAll()
-      .subscribe((response: any) => {
-        console.log("departments : ", response)
-        this.departmentsTitles = response
-      })
   }
 
   getFormValidationErrors() {
@@ -58,7 +46,6 @@ export class AgentsEditComponent {
       lastname: this.usersService.formModel.value.lastname,
       phone: this.usersService.formModel.value.phone,
       email: this.usersService.formModel.value.email,
-      departmentId: this.usersService.formModel.value.departmentId,
       roles: this.usersService.formModel.value.roles,
     }
 

@@ -36,7 +36,6 @@ export class UserProfileComponent {
       description: body.description,
       avatarUrl: "http://localhost:3000/avatars/" + body.avatarUrl,
       roles: body.roles,
-      department: body.department.title,
       status: body.status,
       createdAt: body.createdAt,
     })
@@ -58,7 +57,6 @@ export class UserProfileComponent {
       description: ['', [Validators.required]],
       avatarUrl: [''],
       roles: [''],
-      department: [''],
       status: [false, [Validators.required]],
       createdAt: [new Date()],
     })

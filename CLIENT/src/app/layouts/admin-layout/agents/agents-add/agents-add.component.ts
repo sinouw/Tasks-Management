@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { UsersService } from 'app/services/users.service';
 import { NotificationsService } from 'app/services/notifications.service';
-import { DepartmentsService } from 'app/services/departments.service';
 import { ValidationErrors, NgForm } from '@angular/forms';
 
 @Component({
@@ -13,24 +12,13 @@ export class AgentsAddComponent {
 
   @ViewChild('regForm', {static: false}) myForm: NgForm;
   
-  departmentsTitles : any = []
-  roles: any = ["admin","RSC","RA","RS"]
+  roles: any = ["admin","RH","IT"]
 
   constructor(private usersService : UsersService,
-    private departmentsService : DepartmentsService,
     private notificationsService: NotificationsService) { 
       this.usersService.createFormModel()
-      this.getDepartmentsTitles()
     }
 
-
-  getDepartmentsTitles() {
-    this.departmentsService.getAll()
-    .subscribe((response : any)=>{
-     console.log("departments : ",response)
-     this.departmentsTitles = response
-    })
-  }
 
   getFormValidationErrors() {
     Object.keys(this.usersService.formModel.controls).forEach(key => {
@@ -58,7 +46,6 @@ export class AgentsAddComponent {
       country:this.usersService.formModel.value.country,
       postalCode:this.usersService.formModel.value.postalCode,
       description:this.usersService.formModel.value.description,
-      departmentId:this.usersService.formModel.value.departmentId,
       roles:this.usersService.formModel.value.roles,
     }
     debugger

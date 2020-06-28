@@ -10,20 +10,7 @@
                     <div class="card-body">
                         <form [formGroup]="usersService.formModel" (ngSubmit)="onSubmit()">
                             <div class="row">
-                                <div class="col-md-4">
-                                    <mat-form-field class="example-full-width">
-                                        <mat-select matInput placeholder="Department" formControlName="departmentId" 
-                                            required>
-                                            <mat-option [value]="department._id"
-                                                *ngFor="let department of departmentsTitles">{{department.title}}
-                                            </mat-option>
-                                            <mat-error
-                                                *ngIf="usersService.formModel.get('departmentId').hasError('required') && usersService.formModel.get('departmentId').touched">
-                                                This field should not be empty.</mat-error>
-                                        </mat-select>
-                                    </mat-form-field>
-                                </div>
-                                <div class="col-md-4">
+                                <div class="col-md-6">
                                     <mat-form-field class="example-full-width">
                                         <mat-select placeholder="Role" multiple formControlName="roles" required>
                                             <mat-option [value]="role" *ngFor="let role of roles">{{role}}</mat-option>
@@ -33,7 +20,7 @@
                                             This field should not be empty.</mat-error>
                                     </mat-form-field>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-6">
                                     <mat-form-field class="example-full-width">
                                         <input matInput placeholder="Username" formControlName="username" disabled>
                                         <mat-error

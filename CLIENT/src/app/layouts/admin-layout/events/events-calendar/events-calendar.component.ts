@@ -41,7 +41,6 @@ export class EventsCalendarComponent {
     private notificationsService: NotificationsService,
     private router: Router) {
     let token = this.accountService.getDecodedToken();
-    let section = localStorage.getItem('section')
     let currentRoles = token.roles;
     let currentUserId = token.sub;
     let isAdmin = currentRoles.some(role => currentRoles.includes("admin"));
@@ -49,18 +48,13 @@ export class EventsCalendarComponent {
       this.getAllForAdmin("")
     }
     else {
-      if (section) {
-        this.getAllForAdmin(section)
-      } else {
-        this.router.navigateByUrl('/sections');
-        this.notificationsService.showNotification('info','Please Chose A Section.')
-      }
+        this.getAllForAdmin(currentRoles)
     }
   }
   events: CalendarEvent[] = [];
 
-  getAllForAdmin(section) {
-    if (section == "") {
+  getAllForAdmin(currentRoles) {
+    if (currentRoles == "") {
       this.eventSerivce.getAll()
         .subscribe((response: any) => {
           console.log("events : ", response)
@@ -76,7 +70,7 @@ export class EventsCalendarComponent {
         console.log("events : ", response)
         if (response.length > 0) {
           response.map(e => {
-            if (e.roles.includes(section)) {
+            if (e.roles.includes(currentRoles)) {
               this.addEvents(e.title, new Date(e.startDate), new Date(e.endDate))
             }
           })

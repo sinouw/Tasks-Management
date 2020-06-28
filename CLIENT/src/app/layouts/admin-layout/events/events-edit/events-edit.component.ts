@@ -1,4 +1,3 @@
-import { DepartmentsService } from 'app/services/departments.service';
 import { Component, OnInit } from '@angular/core';
 import { EventsService } from 'app/services/events.service';
 import { NotificationsService } from 'app/services/notifications.service';
@@ -11,14 +10,12 @@ import { Router } from '@angular/router';
 })
 export class EventsEditComponent {
 
-  departmentsTitles : any = []
-  roles: any = ["admin","RSC","RA","RS"]
+  roles: any = ["RH","IT"]
 
   date: string;
   constructor(private eventService : EventsService,
     private notificationsService :NotificationsService,
-    private router : Router,
-    private departmentsService : DepartmentsService) {
+    private router : Router) {
     if (!this.eventService.formModel.value._id) {
       this.router.navigateByUrl('events/list')
     }else{
@@ -28,21 +25,9 @@ export class EventsEditComponent {
         startDate : new Date(this.eventService.formModel.value.startDate).toISOString().slice(0, 16),
         endDate : new Date(this.eventService.formModel.value.endDate).toISOString().slice(0, 16),
       })
-      console.log(this.eventService.formModel.value.startDate);
-      
-      this.getDepartmentsTitles()
+      console.log(this.eventService.formModel.value.startDate);  
     }
    }
-
-   getDepartmentsTitles() {
-    this.departmentsService.getAll()
-    .subscribe((response : any)=>{
-     console.log("departments : ",response)
-     this.departmentsTitles = response
-    })
-  }
-
-
 
   onSubmit(){
     console.log("this.formModel.value : ",this.eventService.formModel.value)

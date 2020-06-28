@@ -16,7 +16,7 @@ export class EventsListComponent {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   dataSource = new MatTableDataSource();
-  displayedColumns: string[] = ['position', 'title', 'roles' ,'type', 'location', 'url', 'startDate', 'endDate','status', 'createdAt', 'action'];
+  displayedColumns: string[] = ['position', 'title', 'roles' , 'startDate', 'endDate','status', 'createdAt', 'action'];
 
   constructor(private eventSerivce : EventsService,
     private accountService : AccountService,

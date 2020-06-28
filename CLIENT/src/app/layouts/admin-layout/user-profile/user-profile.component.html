@@ -10,25 +10,19 @@
                     <div class="card-body">
                         <form [formGroup]="formModel" (ngSubmit)="onSubmit()">
                             <div class="row">
-                                <div class="col-md-3">
-                                    <mat-form-field class="example-full-width">
-                                        <input matInput placeholder="Department" formControlName="department" readonly disabled>
-                                        <mat-error *ngIf="formModel.get('department').hasError('required') && formModel.get('department').touched">This field should not be empty.</mat-error>
-                                    </mat-form-field>
-                                </div>
-                                <div class="col-md-3">
+                                <div class="col-md-4">
                                     <mat-form-field class="example-full-width">
                                         <input matInput placeholder="Username" formControlName="username" readonly disabled>
                                         <mat-error *ngIf="formModel.get('username').hasError('required') && formModel.get('username').touched">This field should not be empty.</mat-error>
                                     </mat-form-field>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-4">
                                     <mat-form-field class="example-full-width">
                                         <input matInput placeholder="Last Name" formControlName="lastname" type="text">
                                         <mat-error *ngIf="formModel.get('lastname').hasError('required') && formModel.get('lastname').touched">This field should not be empty.</mat-error>
                                     </mat-form-field>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-4">
                                     <mat-form-field class="example-full-width">
                                         <input matInput placeholder="Fist Name" formControlName="firstname">
                                         <mat-error *ngIf="formModel.get('firstname').hasError('required') && formModel.get('firstname').touched">This field should not be empty.</mat-error>

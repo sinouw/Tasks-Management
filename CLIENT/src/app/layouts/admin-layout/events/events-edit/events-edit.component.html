@@ -12,7 +12,7 @@
                         <form [formGroup]="eventService.formModel" (ngSubmit)="onSubmit()">
 
                             <div class="row">
-                                <div class="col-md-3">
+                                <div class="col-md-4">
                                     <mat-form-field class="example-full-width">
                                         <input matInput placeholder="Title" formControlName="title">
                                         <mat-error
@@ -20,15 +20,7 @@
                                             This field should not be empty.</mat-error>
                                     </mat-form-field>
                                 </div>
-                                <div class="col-md-3">
-                                    <mat-form-field class="example-full-width">
-                                        <input matInput placeholder="Type" formControlName="type">
-                                        <mat-error
-                                            *ngIf="eventService.formModel.get('type').hasError('required') && eventService.formModel.get('type').touched">
-                                            This field should not be empty.</mat-error>
-                                    </mat-form-field>
-                                </div>
-                                <div class="col-md-3">
+                                <div class="col-md-4">
                                     <mat-form-field class="example-full-width">
                                         <mat-select placeholder="Role" multiple formControlName="roles" required>
                                             <mat-option [value]="role" *ngFor="let role of roles">{{role}}</mat-option>
@@ -38,7 +30,7 @@
                                             This field should not be empty.</mat-error>
                                     </mat-form-field>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-4">
                                     <mat-form-field class="example-full-width">
                                         <mat-select placeholder="Status" formControlName="status">
                                             <mat-option [value]="true">Active</mat-option>
@@ -46,34 +38,6 @@
                                         </mat-select>
                                         <mat-error
                                             *ngIf="eventService.formModel.get('status').hasError('required') && eventService.formModel.get('status').touched">
-                                            This field should not be empty.</mat-error>
-                                    </mat-form-field>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <mat-form-field class="example-full-width">
-                                        <input matInput placeholder="Location" formControlName="location">
-                                        <mat-error
-                                            *ngIf="eventService.formModel.get('location').hasError('required') && eventService.formModel.get('location').touched">
-                                            This field should not be empty.</mat-error>
-                                    </mat-form-field>
-                                </div>
-                                <div class="col-md-4">
-                                    <mat-form-field class="example-full-width">
-                                        <input matInput placeholder="URL" formControlName="url">
-                                        <mat-error
-                                            *ngIf="eventService.formModel.get('url').hasError('required') && eventService.formModel.get('url').touched">
-                                            This field should not be empty.</mat-error>
-                                    </mat-form-field>
-                                </div>
-                                <div class="col-md-4">
-                                    <mat-form-field class="example-full-width">
-                                        <input matInput placeholder="Creation Date"
-                                            [value]="eventService.formModel.get('createdAt').value | date : 'medium'"
-                                            disabled>
-                                        <mat-error
-                                            *ngIf="eventService.formModel.get('createdAt').hasError('required') && eventService.formModel.get('createdAt').touched">
                                             This field should not be empty.</mat-error>
                                     </mat-form-field>
                                 </div>
@@ -99,10 +63,12 @@
                                 </div>
                                 <div class="col-md-4">
                                     <mat-form-field class="example-full-width">
-                                        <mat-select matInput placeholder="Department" formControlName="departementId" required>
-                                            <mat-option [value]="department._id" *ngFor="let department of departmentsTitles">{{department.title}}</mat-option>
-                                            <mat-error *ngIf="eventService.formModel.get('departementId').hasError('required') && eventService.formModel.get('departementId').touched">This field should not be empty.</mat-error>
-                                        </mat-select>
+                                        <input matInput placeholder="Creation Date"
+                                            [value]="eventService.formModel.get('createdAt').value | date : 'medium'"
+                                            disabled>
+                                        <mat-error
+                                            *ngIf="eventService.formModel.get('createdAt').hasError('required') && eventService.formModel.get('createdAt').touched">
+                                            This field should not be empty.</mat-error>
                                     </mat-form-field>
                                 </div>
                             </div>
