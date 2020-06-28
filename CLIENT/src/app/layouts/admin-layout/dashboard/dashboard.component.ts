@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import * as Chartist from 'chartist';
+import { AccountService } from 'app/services/account.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -8,7 +10,15 @@ import * as Chartist from 'chartist';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor() { }
+  constructor(private accountService : AccountService, private router : Router) {
+
+    let token = this.accountService.getDecodedToken();
+    if (token) {
+      let currentRoles = token.roles;
+      let isAdmin = currentRoles.some(role => currentRoles.includes("admin"));
+      if (!isAdmin) this.router.navigateByUrl('/events/calendar');
+    }
+   }
   startAnimationForLineChart(chart){
       let seq: any, delays: any, durations: any;
       seq = 0;

@@ -2,7 +2,7 @@
     <div class="col-md-4 col-12" style="padding-top: 200px;">
         <form [formGroup]="formModel" (ngSubmit)="onSubmit()">
             <div class="card">
-                <div class="card-header card-header-danger" style="text-align:center">
+                <div class="card-header card-header-info" style="text-align:center">
                     <h4 class="card-title" href="/admin/dashboard" text-align="center">Account Login</h4>
                 </div>
                 <div class="card-body">
@@ -29,7 +29,7 @@
                     </div>
                 </div>
                 <div class="card-footer justify-content-center">
-                    <button mat-raised-button type="submit" class="btn btn-danger col-md-3" [disabled]="formModel.invalid">Login</button>
+                    <button mat-raised-button type="submit" class="btn btn-info col-md-3" [disabled]="formModel.invalid">Login</button>
                 </div>
             </div>
         </form>

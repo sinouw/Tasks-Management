@@ -1,7 +1,7 @@
 <div class="d-flex justify-content-center align-items-center">
     <div class="col-md-4 col-12" style="padding-top: 200px;">
         <div class="card">
-            <div class="card-header card-header-danger" style="text-align:center">
+            <div class="card-header card-header-info" style="text-align:center">
                 <h4 class="card-title" href="/admin/dashboard" text-align="center">Account Register</h4>
             </div>
             <form [formGroup]="formModel" (ngSubmit)="onSubmit()">
@@ -56,7 +56,7 @@
                     </div>
                 </div>
                 <div class="card-footer justify-content-center">
-                    <button mat-raised-button type="submit" class="btn btn-danger col-md-3" [disabled]="formModel.invalid">Register</button>
+                    <button mat-raised-button type="submit" class="btn btn-info col-md-3" [disabled]="formModel.invalid">Register</button>
                 </div>
             </form>
         </div>
