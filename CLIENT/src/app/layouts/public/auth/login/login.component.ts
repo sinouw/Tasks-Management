@@ -20,10 +20,7 @@ export class LoginComponent {
     private router: Router) {
         let token = this.accountService.getDecodedToken();
         if (token) {
-          let currentRoles = token.roles;
-          let isAdmin = currentRoles.some(role => currentRoles.includes("admin"));
-          if (isAdmin) this.router.navigateByUrl('/dashboard');
-          else this.router.navigateByUrl('/events/calendar');
+          this.router.navigateByUrl('/events/calendar');
         }
     this.createFormModel()
   }

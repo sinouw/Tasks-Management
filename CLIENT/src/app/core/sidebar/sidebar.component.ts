@@ -10,7 +10,7 @@ declare interface RouteInfo {
     class: string;
 }
 export const ROUTES: any[] = [
-    { role :'admin', path: '/dashboard', title: 'Dashboard',  icon: 'dashboard', class: '' },
+    // { role :'admin', path: '/dashboard', title: 'Dashboard',  icon: 'dashboard', class: '' },
     { path: '/events/calendar', title: "Calendar",  icon:'event', class: '' },
     { role :'admin', path: '/events/list', title: "Events List",  icon:'event_note', class: '' },
     { role :'admin', path: '/agents/list', title: "Agents List",  icon:'people', class: '' },
