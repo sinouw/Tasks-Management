@@ -70,6 +70,9 @@ export class DashboardComponent implements OnInit {
       .subscribe((response: any) => {
         console.log("events : ", response)
         let chartData = []
+        response.sort((a,b)=> +new Date(a.startDate) - +new Date(b.startDate))
+
+
         let values = response.map(x => new Date(x.startDate).toISOString().split("T")[0])
         let occ = values.reduce((acc, it) => { if (Object.keys(acc).some(item => item == it)) return acc; else return { ...acc, [it]: values.filter(item => it == item).length }; }, {})
         console.log("occ : ", occ)
