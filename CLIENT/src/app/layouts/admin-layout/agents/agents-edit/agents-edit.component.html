@@ -1,0 +1,104 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-8 order-md-first order-lg-first  order-last">
+                <div class="card">
+                    <div class="card-header card-header-info">
+                        <h4 class="card-title">Edit Agent</h4>
+                        <p class="card-category">Edit agent informations</p>
+                    </div>
+                    <div class="card-body">
+                        <form [formGroup]="usersService.formModel" (ngSubmit)="onSubmit()">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <mat-form-field class="example-full-width">
+                                        <mat-select placeholder="Role" multiple formControlName="roles" required>
+                                            <mat-option [value]="role" *ngFor="let role of roles">{{role}}</mat-option>
+                                        </mat-select>
+                                        <mat-error
+                                            *ngIf="usersService.formModel.get('roles').hasError('required') && usersService.formModel.get('roles').touched">
+                                            This field should not be empty.</mat-error>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-6">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Username" formControlName="username" disabled>
+                                        <mat-error
+                                            *ngIf="usersService.formModel.get('username').hasError('required') && usersService.formModel.get('username').touched">
+                                            This field should not be empty.</mat-error>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Last Name" formControlName="lastname" type="text">
+                                        <mat-error
+                                            *ngIf="usersService.formModel.get('lastname').hasError('required') && usersService.formModel.get('lastname').touched">
+                                            This field should not be empty.</mat-error>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-6">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Fist Name" formControlName="firstname">
+                                        <mat-error
+                                            *ngIf="usersService.formModel.get('firstname').hasError('required') && usersService.formModel.get('firstname').touched">
+                                            This field should not be empty.</mat-error>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Phone Number (+216)" formControlName="phone"
+                                            type="text">
+                                        <mat-error
+                                            *ngIf="usersService.formModel.get('phone').hasError('required') && usersService.formModel.get('phone').touched">
+                                            This field should not be empty.</mat-error>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-6">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Email address" type="email"
+                                            formControlName="email">
+                                        <mat-error
+                                            *ngIf="usersService.formModel.get('email').hasError('required') && usersService.formModel.get('email').touched">
+                                            This field should not be empty.</mat-error>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <button mat-raised-button type="submit" class="btn btn-outline-danger pull-right" >Update</button>
+                            <div class="clearfix"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card card-profile">
+                    <div class="card-avatar">
+                        <a href="javascript:void(0)">
+                            <img class="img"
+                                *ngIf="usersService.formModel.value.avatarUrl && usersService.formModel.value.avatarUrl!='http://localhost:3000/avatars/' ;else avatarBloc"
+                                [src]="usersService.formModel.value.avatarUrl" />
+                            <ng-template #avatarBloc>
+                                <img src="img" src="../../../../assets/img/logo-user1.png">
+                            </ng-template>
+                        </a>
+                    </div>
+                    <div class="card-body">
+                        <h4 class="card-title"
+                            *ngIf="!usersService.formModel.value.lastname && !usersService.formModel.value.firstname ;else elseNameBloc">
+                            Esprit User</h4>
+                        <ng-template #elseNameBloc>
+                            <h4 class="card-title">
+                                {{usersService.formModel.value.lastname+' '+usersService.formModel.value.firstname}}
+                            </h4>
+                        </ng-template>
+                        <input type="file" id="myfile" name="myfile" accept="image/*" style="display:none;"
+                            (change)="UploadImage($event.target.files)">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

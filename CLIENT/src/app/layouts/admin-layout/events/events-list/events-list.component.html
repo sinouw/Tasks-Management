@@ -1,0 +1,99 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-info">
+                        <h4 class="card-title ">Events Table</h4>
+                        <p class="card-category">Manage events</p>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <div class="container d-flex justify-content-between align-items-center">
+                                <mat-form-field style="width:80%">
+                                    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
+                                </mat-form-field>
+                                <button mat-raised-button class="btn btn-outline-danger"
+                                    routerLink="/events/add">Add Event</button>
+                            </div>
+                            <div class="table-responsive-x" *ngIf="dataSource && dataSource.data.length>0">
+                                <table mat-table [dataSource]="dataSource" class="w-100 table-scroll-wrap">
+                                    <!-- Position Column -->
+                                    <ng-container matColumnDef="position">
+                                        <th mat-header-cell *matHeaderCellDef> No. </th>
+                                        <td mat-cell *matCellDef="let element;let i = index;"> {{i}} </td>
+                                    </ng-container>
+
+                                    <!-- title Column -->
+                                    <ng-container matColumnDef="title">
+                                        <th mat-header-cell *matHeaderCellDef> Title </th>
+                                        <td mat-cell *matCellDef="let element"> {{element?.title}} </td>
+                                    </ng-container>
+
+                                    <ng-container matColumnDef="roles">
+                                        <th mat-header-cell *matHeaderCellDef> Roles </th>
+                                        <td mat-cell *matCellDef="let element"> 
+                                        <span *ngFor="let role of element?.roles">{{role}}.</span>    
+                                        </td>
+                                    </ng-container>
+
+                                    <!-- createdAt Column -->
+                                    <ng-container matColumnDef="startDate">
+                                        <th mat-header-cell *matHeaderCellDef> Start Date </th>
+                                        <td mat-cell *matCellDef="let element">
+                                            {{element?.startDate | date : 'dd/MM/yyyy'}}</td>
+                                    </ng-container>
+
+                                    <!-- endDate Column -->
+                                    <ng-container matColumnDef="endDate">
+                                        <th mat-header-cell *matHeaderCellDef> End Date </th>
+                                        <td mat-cell *matCellDef="let element">
+                                            {{element?.endDate | date : 'dd/MM/yyyy'}}</td>
+                                    </ng-container>
+
+                                    <!-- status Column -->
+                                    <ng-container matColumnDef="status">
+                                        <th mat-header-cell *matHeaderCellDef> Status </th>
+                                        <td mat-cell *matCellDef="let element">
+
+                                            <i *ngIf="element.status!=null && element.status===true;else elseStatusBloc"
+                                                class='fa fa-circle font-success f-12'></i>
+                                            <ng-template #elseStatusBloc>
+                                                <i class='fa fa-circle font-danger f-12'></i>
+                                            </ng-template>
+                                        </td>
+                                    </ng-container>
+
+                                    <!-- createdAt Column -->
+                                    <ng-container matColumnDef="createdAt">
+                                        <th mat-header-cell *matHeaderCellDef> Creation Date </th>
+                                        <td mat-cell *matCellDef="let element">
+                                            {{element?.createdAt | date : 'dd/MM/yyyy'}}</td>
+                                    </ng-container>
+                                    <!-- Actions Column -->
+                                    <ng-container matColumnDef="action">
+                                        <th class="px-3" mat-header-cell *matHeaderCellDef> Action </th>
+                                        <td class="px-3" mat-cell *matCellDef="let element;let i= index;">
+
+                                            <button mat-icon-button color="primary" (click)="editById(element)">
+                                                <i class="material-icons">edit</i>
+
+                                            </button>
+
+                                            <button color="warn" mat-icon-button (click)="deleteById(element._id,i)">
+                                                <i class="material-icons">delete</i>
+
+                                            </button>
+                                        </td>
+                                    </ng-container>
+                                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>

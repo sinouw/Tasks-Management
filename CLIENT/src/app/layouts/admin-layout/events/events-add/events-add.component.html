@@ -1,0 +1,138 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-8 order-md-first order-lg-first  order-last ">
+
+                <div class="card">
+                    <div class="card-header card-header-info">
+                        <h4 class="card-title">Add Event</h4>
+                        <p class="card-category">Add event information</p>
+                    </div>
+                    <div class="card-body">
+                        <form [formGroup]="eventService.formModel" (ngSubmit)="onSubmit()">
+
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Title" formControlName="title">
+                                        <mat-error
+                                            *ngIf="eventService.formModel.get('title').hasError('required') && eventService.formModel.get('title').touched">
+                                            This field should not be empty.</mat-error>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-4">
+                                    <mat-form-field class="example-full-width">
+                                        <mat-select placeholder="Role" multiple formControlName="roles" required>
+                                            <mat-option [value]="role" *ngFor="let role of roles">{{role}}</mat-option>
+                                        </mat-select>
+                                        <mat-error
+                                            *ngIf="eventService.formModel.get('roles').hasError('required') && eventService.formModel.get('roles').touched">
+                                            This field should not be empty.</mat-error>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-4">
+                                    <mat-form-field class="example-full-width">
+                                        <mat-select placeholder="Status" formControlName="status">
+                                            <mat-option [value]="true">Active</mat-option>
+                                            <mat-option [value]="false">Not Active</mat-option>
+                                        </mat-select>
+                                        <mat-error
+                                            *ngIf="eventService.formModel.get('status').hasError('required') && eventService.formModel.get('status').touched">
+                                            This field should not be empty.</mat-error>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Start Date" type="datetime-local"
+                                            formControlName="startDate">
+                                        <mat-error
+                                            *ngIf="eventService.formModel.get('startDate').hasError('required') && eventService.formModel.get('startDate').touched">
+                                            This field should not be empty.</mat-error>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-4">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="End Date" type="datetime-local"
+                                            formControlName="endDate">
+                                        <mat-error
+                                            *ngIf="eventService.formModel.get('endDate').hasError('required') && eventService.formModel.get('endDate').touched">
+                                            This field should not be empty.</mat-error>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-4">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Creation Date"
+                                            [value]="eventService.formModel.get('createdAt').value | date : 'medium'"
+                                            disabled>
+                                        <mat-error
+                                            *ngIf="eventService.formModel.get('createdAt').hasError('required') && eventService.formModel.get('createdAt').touched">
+                                            This field should not be empty.</mat-error>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <div class="form-group">
+                                            <label class="bmd-label-floating "> Description</label>
+                                            <mat-form-field class="example-full-width">
+                                                <textarea matInput class="form-control" rows="5"
+                                                    formControlName="description"></textarea>
+                                            </mat-form-field>
+
+                                            <mat-error
+                                                *ngIf="eventService.formModel.get('description').hasError('required') && eventService.formModel.get('description').touched">
+                                                This field should not be empty.</mat-error>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        <button mat-raised-button type="submit" (click)="onSubmit()"
+                            [disabled]="eventService.formModel.invalid"
+                            class="btn btn-outline-danger pull-right">Create</button>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 ">
+                <div class="card card-profile">
+                    <div class="card-avatar" style="width: 150px;height: 150px;background-color: white;">
+                        <!-- <img class="img" src="./assets/img/faces/marc.jpg" /> -->
+                        <div style="padding-top: 50px;font-size: 60px;">
+                            <p *ngIf="!eventService.formModel.value.title;else titleBlocChar"><strong>E</strong>
+                            </p>
+                            <ng-template #titleBlocChar>
+                                <p><strong>{{eventService.formModel.value.title[0]}}</strong></p>
+                            </ng-template>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <h6 class="card-category text-gray">Event</h6>
+                        <h4 class="card-title" style="display: -webkit-inline-box;">
+                            <i *ngIf="eventService.formModel.value.status;else elseStatusBloc"
+                                style="margin-right: 10px;" class='fa fa-circle font-success f-12'></i>
+                            <ng-template #elseStatusBloc>
+                                <i class='fa fa-circle font-danger f-12' style="margin-right: 10px;"></i>
+                            </ng-template>
+                            <p *ngIf="!eventService.formModel.value.title;else titleBloc">Event Name</p>
+                            <ng-template #titleBloc>
+                                <p>{{eventService.formModel.value.title}}</p>
+                            </ng-template>
+                        </h4>
+                        <p class="card-description"
+                            *ngIf="!eventService.formModel.value.description;else descriptionBloc">
+                            Don't be scared of the truth because we need to restart the human foundation in truth And I
+                            love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...
+                        </p>
+                        <ng-template #descriptionBloc>
+                            <p class="card-description">{{eventService.formModel.value.description}}</p>
+                        </ng-template>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
