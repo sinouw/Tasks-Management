@@ -50,7 +50,7 @@ export class UsersService {
       postalCode:'' ,
       description: '',
       roles: [''],
-      status: [true, [Validators.required]],
+      status: [true],
       createdAt: [new Date()],
       passwords: this.formBuilder.group({
         password: ['', [Validators.required, Validators.minLength(4)]],
